@@ -1,0 +1,25 @@
+.summary {
+  display: flex;
+  align-items: center;
+}
+
+.profilePitcure {
+  width: 20% !important;
+  border-radius: 50%;
+}
+
+.profileInformation {
+  margin-left: 25px;
+}
+
+.profileInformation .name {
+  font-size: 45px;
+}
+
+.intro {
+  margin-top: 5%;
+}
+
+.intro h3 {
+  margin: 0 auto 10px auto;
+}

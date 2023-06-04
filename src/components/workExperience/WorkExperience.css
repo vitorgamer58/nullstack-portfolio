@@ -1,0 +1,16 @@
+.experience {
+  display: flex;
+}
+
+.experience img {
+  height: 5%;
+  width: 5%;
+}
+
+.experience .content {
+  margin: 0 auto 0 10px;
+}
+
+.experience .role {
+  margin: 10px auto 0 auto;
+}

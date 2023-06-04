@@ -1,0 +1,17 @@
+{
+  "name": "nullstack-portfolio",
+  "version": "0.0.1",
+  "description": "",
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nullstack": "~0.18.0"
+  },
+  "scripts": {
+    "start": "npx nullstack start",
+    "build": "npx nullstack build"
+  },
+  "dependencies": {
+    "date-fns": "^2.30.0"
+  }
+}
