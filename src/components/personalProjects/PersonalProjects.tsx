@@ -1,13 +1,12 @@
 import Nullstack, { NullstackServerContext } from 'nullstack'
 
-import { IPersonalProject, LanguageLogo } from '../../interfaces/databaseInterfaces'
+import { IPersonalProject } from '../../interfaces/databaseInterfaces'
 import Database from '../../repositories/database'
 import './PersonalProjects.css'
 
 class PersonalProjects extends Nullstack {
 
   personalProjects: IPersonalProject[] = []
-  programmingLanguagesLogo: LanguageLogo = {}
 
   static async fetchPersonalProjectsFromDB(context?: NullstackServerContext) {
     const database = new Database(context.secrets.connectionString)
@@ -21,27 +20,18 @@ class PersonalProjects extends Nullstack {
 
   async fetchPersonalProjects() {
     this.personalProjects = await PersonalProjects.fetchPersonalProjectsFromDB()
-    this.programmingLanguagesLogo = await PersonalProjects.fetchLanguagesLogoFromDB()
   }
 
   async initiate() {
     await this.fetchPersonalProjects()
   }
 
-  renderProject({ projectName, description, languages }: IPersonalProject, index: number) {
+  renderProject({ projectName, description }: IPersonalProject, index: number) {
     return (
       <>
         <div key={index} class={'project'}>
           <p>{projectName}</p>
           <p>{description}</p>
-          <div class={'languages'}>
-            {languages.map((language, imgIndex) => (
-              <div class={'languageDiv'}>
-                <p>{language}</p>
-                {/* <img src={this.programmingLanguagesLogo[language]} alt="" key={imgIndex} class={'languageLogo'} /> */}
-              </div>
-            ))}
-          </div>
         </div>
       </>
     )
