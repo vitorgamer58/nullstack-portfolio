@@ -1,15 +1,20 @@
-import Nullstack, { NullstackServerContext } from 'nullstack'
+import Nullstack from 'nullstack'
 
 import { IOpenSourceContribs } from '../../interfaces/databaseInterfaces'
-import Database from '../../repositories/database'
+import { MyServerContext } from '../../interfaces/myServerContext'
+import { OpenSourceContribsModel } from '../../models/databaseModels'
 
 class OpenSourceContribs extends Nullstack {
 
   openSourceContribs: IOpenSourceContribs[] = []
 
-  static async fetchOpenSourceContribsFromDB(context?: NullstackServerContext) {
-    const database = new Database(context.secrets.connectionString)
-    return database.getOpenSourceContribs()
+  static async fetchOpenSourceContribsFromDB(context?: MyServerContext) {
+    const { database } = context
+
+    return (await database
+      .collection('open_source_contribs')
+      .find({})
+      .toArray()) as unknown as OpenSourceContribsModel[]
   }
 
   async fetchWorkExperiences() {
@@ -23,7 +28,7 @@ class OpenSourceContribs extends Nullstack {
   render() {
     return (
       <>
-        {this.openSourceContribs.length && (
+        {this.openSourceContribs?.length > 0 ? (
           <>
             <h2>Open source contribs and accepted pull requests</h2>
             {this.openSourceContribs.map(({ title, description, link }, index) => (
@@ -37,7 +42,7 @@ class OpenSourceContribs extends Nullstack {
               </div>
             ))}
           </>
-        )}
+        ) : null}
       </>
     )
   }

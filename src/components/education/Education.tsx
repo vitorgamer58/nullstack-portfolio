@@ -1,19 +1,21 @@
-import Nullstack, { NullstackServerContext } from 'nullstack'
+import Nullstack from 'nullstack'
 
 import { format } from 'date-fns'
 import { pt } from 'date-fns/locale'
 
 import { IEducation } from '../../interfaces/databaseInterfaces'
-import Database from '../../repositories/database'
+import { MyServerContext } from '../../interfaces/myServerContext'
+import { EducationModel } from '../../models/databaseModels'
 
 class Education extends Nullstack {
 
   educationList: IEducation[] = []
 
 
-  static async fetchEducationFromDB(context?: NullstackServerContext) {
-    const database = new Database(context.secrets.connectionString)
-    return database.getEducation()
+  static async fetchEducationFromDB(context?: MyServerContext) {
+    const { database } = context
+
+    return (await database.collection('education').find({}).toArray()) as unknown as EducationModel[]
   }
 
   async fetchEducation() {
@@ -26,7 +28,7 @@ class Education extends Nullstack {
     }
 
     const educationFromDB = await Education.fetchEducationFromDB()
-    this.educationList = educationFromDB.map((education) => {
+    this.educationList = educationFromDB?.map((education) => {
       const startDate = formatDate(education.startDate)
       const endDate = formatDate(education.endDate)
 

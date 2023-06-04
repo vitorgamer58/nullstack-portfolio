@@ -1,21 +1,17 @@
-import Nullstack, { NullstackServerContext } from 'nullstack'
+import Nullstack from 'nullstack'
 
 import { IPersonalProject } from '../../interfaces/databaseInterfaces'
-import Database from '../../repositories/database'
+import { MyServerContext } from '../../interfaces/myServerContext'
+import { PersonalProject } from '../../models/databaseModels'
 import './PersonalProjects.css'
 
 class PersonalProjects extends Nullstack {
 
   personalProjects: IPersonalProject[] = []
 
-  static async fetchPersonalProjectsFromDB(context?: NullstackServerContext) {
-    const database = new Database(context.secrets.connectionString)
-    return database.getPersonalProjects()
-  }
-
-  static async fetchLanguagesLogoFromDB(context?: NullstackServerContext) {
-    const database = new Database(context.secrets.connectionString)
-    return database.getProgrammingLanguagesLogo()
+  static async fetchPersonalProjectsFromDB(context?: MyServerContext) {
+    const { database } = context
+    return (await database.collection('personal_projects').find({}).toArray()) as unknown as PersonalProject[]
   }
 
   async fetchPersonalProjects() {

@@ -1,16 +1,17 @@
-import Nullstack, { NullstackServerContext } from 'nullstack'
+import Nullstack from 'nullstack'
 
 import './WorkExperience.css'
 import { IWorkExperience } from '../../interfaces/databaseInterfaces'
-import Database from '../../repositories/database'
+import { MyServerContext } from '../../interfaces/myServerContext'
+import { WorkExperiencesModel } from '../../models/databaseModels'
 
 class WorkExperiences extends Nullstack {
 
   workExperiences: IWorkExperience[] = []
 
-  static async fetchWorkExperiencesFromDB(context?: NullstackServerContext) {
-    const database = new Database(context.secrets.connectionString)
-    return database.getWorkExperience()
+  static async fetchWorkExperiencesFromDB(context?: MyServerContext) {
+    const { database } = context
+    return (await database.collection('work_experiences').find({}).toArray()) as unknown as WorkExperiencesModel[]
   }
 
   async fetchWorkExperiences() {
@@ -24,7 +25,7 @@ class WorkExperiences extends Nullstack {
   renderRoles(experience: IWorkExperience, index: number) {
     return (
       <>
-        {experience?.roles.map((role, roleIndex) => (
+        {experience?.roles?.map((role, roleIndex) => (
           <div key={roleIndex} class={'role'}>
             <p key={index + roleIndex}>{role.jobName}</p>
             {role.description?.split('\n').map((line, lineIndex) => (

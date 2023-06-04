@@ -1,7 +1,8 @@
 import Nullstack from 'nullstack'
 
-import Database from '../../repositories/database'
 import './Summary.css'
+import { MyServerContext } from '../../interfaces/myServerContext'
+import { SummaryModel } from '../../models/databaseModels'
 
 class Summary extends Nullstack {
 
@@ -10,9 +11,9 @@ class Summary extends Nullstack {
   profilePitcure = ''
   intro = ''
 
-  static async fetchSummaryFromDB() {
-    const database = new Database('')
-    return database.getSummary()
+  static async fetchSummaryFromDB(context?: MyServerContext) {
+    const { database } = context
+    return (await database.collection('summary').findOne({})) as unknown as SummaryModel
   }
 
   async fetchSummary() {
