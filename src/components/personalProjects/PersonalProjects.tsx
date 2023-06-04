@@ -18,7 +18,7 @@ class PersonalProjects extends Nullstack {
     this.personalProjects = await PersonalProjects.fetchPersonalProjectsFromDB()
   }
 
-  async initiate() {
+  async hydrate() {
     await this.fetchPersonalProjects()
   }
 
