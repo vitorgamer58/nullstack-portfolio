@@ -14,6 +14,8 @@ export interface IWorkExperience {
 export interface IWorkExperienceRole {
   jobName: string
   description: string
+  startDate: Date
+  endDate?: Date
 }
 
 export interface IEducation {

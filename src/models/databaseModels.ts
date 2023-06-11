@@ -15,7 +15,9 @@ export class SummaryModel {
 
 export class roleModel {
 
-  constructor(public jobName: string, public description: string) {}
+  constructor(public jobName: string, public description: string, public startDate: Date, public endDate?: Date) {
+    if (endDate === undefined) this.endDate = new Date()
+  }
 
 }
 
