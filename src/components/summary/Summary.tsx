@@ -1,15 +1,13 @@
 import Nullstack from 'nullstack'
 
 import './Summary.css'
+import { ISummary } from '../../interfaces/databaseInterfaces'
 import { MyServerContext } from '../../interfaces/myServerContext'
 import { SummaryModel } from '../../models/databaseModels'
 
 class Summary extends Nullstack {
 
-  name = ''
-  role = ''
-  profilePitcure = ''
-  intro = ''
+  summary: ISummary
 
   static async fetchSummaryFromDB(context?: MyServerContext) {
     const { database } = context
@@ -17,38 +15,37 @@ class Summary extends Nullstack {
   }
 
   async fetchSummary() {
-    const { name, role, image, intro } = await Summary.fetchSummaryFromDB()
-
-    this.name = name
-    this.role = role
-    this.profilePitcure = image
-    this.intro = intro
+    this.summary = await Summary.fetchSummaryFromDB()
   }
 
   async hydrate() {
     await this.fetchSummary()
   }
 
-  render() {
+  renderSummary({ name, role, image, intro }: ISummary) {
     return (
       <div>
         <div class={'summary'}>
-          <img src={this.profilePitcure} alt="profile pitcure" class={'profilePitcure'} />
+          <img src={image} alt="profile pitcure" class={'profilePitcure'} />
           <div class={'profileInformation'}>
-            <p class={'name'}>{this.name}</p>
-            <p>{this.role}</p>
+            <p class={'name'}>{name}</p>
+            <p>{role}</p>
           </div>
         </div>
         <div class={'intro'}>
           <h3>Intro</h3>
           <div class={'content'}>
-            {this.intro.split('\n').map((line, index) => (
-              <p key={index}>{line}</p>
+            {intro.split('\n').map((line) => (
+              <p>{line}</p>
             ))}
           </div>
         </div>
       </div>
     )
+  }
+
+  render() {
+    return <>{this.summary ? this.renderSummary(this.summary) : null}</>
   }
 
 }

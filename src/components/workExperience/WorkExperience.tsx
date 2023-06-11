@@ -38,7 +38,7 @@ class WorkExperiences extends Nullstack {
     if (yearsDifference > 0) {
       result += `${yearsDifference} ${yearString}`
       if (monthsDifference > 0) {
-        result += ` e ${monthsDifference} ${monthString}`
+        result += ` ${monthsDifference} ${monthString}`
       }
     } else {
       result = `${monthsDifference} ${monthString}`
@@ -51,12 +51,16 @@ class WorkExperiences extends Nullstack {
     return endDate || new Date()
   }
 
+  getMonthAndYear({ date }): string {
+    return date.toLocaleDateString('en', { month: 'short', year: 'numeric' })
+  }
+
   renderRoleStartAndEndDate({ startDate, endDate }: IWorkExperienceRole) {
-    const startDateString = startDate.toLocaleDateString('en', { month: 'short', year: 'numeric' })
+    const startDateString = this.getMonthAndYear({ date: startDate })
 
     const secureEndDate = this.getEndDate({ endDate })
 
-    const endDateString = secureEndDate.toLocaleDateString('en', { month: 'short', year: 'numeric' })
+    const endDateString = this.getMonthAndYear({ date: endDate })
 
     const difference = this.calculateTimeDifference({ startDate, endDate: secureEndDate })
 
@@ -78,18 +82,18 @@ class WorkExperiences extends Nullstack {
     return <>{difference}</>
   }
 
-  renderRoles({ roles }: IWorkExperience, index: number) {
+  renderRoles({ roles }: IWorkExperience) {
     if (!roles) return <></>
 
     const rolesInThisCompany = roles.length
     return (
       <>
-        {roles?.map((role, roleIndex) => (
-          <div key={roleIndex} class={'role'}>
-            <p key={index + roleIndex}>{role.jobName}</p>
+        {roles?.map((role) => (
+          <div class={'role'}>
+            <p>{role.jobName}</p>
             {rolesInThisCompany > 1 ? this.renderRoleStartAndEndDate(role) : null}
-            {role.description?.split('\n').map((line, lineIndex) => (
-              <p key={lineIndex + roleIndex}>{line}</p>
+            {role.description?.split('\n').map((line) => (
+              <p>{line}</p>
             ))}
           </div>
         ))}
@@ -101,13 +105,17 @@ class WorkExperiences extends Nullstack {
     return (
       <>
         <h2>Profissional experience</h2>
-        {this.workExperiences?.map((experience, index) => (
+        {this.workExperiences?.map((experience) => (
           <div class={'experience'}>
-            <img src={experience.logo} alt="Company logo" />
-            <div class={'content'}>
-              <p key={index}>{experience?.companyName}</p>
-              {this.renderCompanyWorkTime(experience)}
-              {this.renderRoles(experience, index)}
+            <div class={'lateral'}>
+              <img src={experience.logo} alt="Company logo" />
+            </div>
+            <div>
+              <div class={'companyInformation'}>
+                <p>{experience?.companyName}</p>
+                {this.renderCompanyWorkTime(experience)}
+              </div>
+              <div class={'content'}>{this.renderRoles(experience)}</div>
             </div>
           </div>
         ))}

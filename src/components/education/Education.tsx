@@ -44,15 +44,20 @@ class Education extends Nullstack {
     await this.fetchEducation()
   }
 
-  renderEducation(education: IEducation, index: number) {
+  renderEducation(education: IEducation) {
     return (
-      <div key={index}>
+      <div>
         <p>{education.university}</p>
         <p>
           {education.degree}, {education.field}
         </p>
         <p>
           {education.startDate} - {education.stillLearning ? 'Present' : education.endDate}
+        </p>
+        <p>
+          {education.description?.split('\n').map((line) => (
+            <p>{line}</p>
+          ))}
         </p>
       </div>
     )
@@ -62,7 +67,7 @@ class Education extends Nullstack {
     return (
       <>
         <h2>Education</h2>
-        {this.educationList?.map((education, index) => this.renderEducation(education, index))}
+        {this.educationList?.map((education) => this.renderEducation(education))}
       </>
     )
   }

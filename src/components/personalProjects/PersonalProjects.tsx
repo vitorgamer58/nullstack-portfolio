@@ -22,10 +22,10 @@ class PersonalProjects extends Nullstack {
     await this.fetchPersonalProjects()
   }
 
-  renderProject({ projectName, description }: IPersonalProject, index: number) {
+  renderProject({ projectName, description }: IPersonalProject) {
     return (
       <>
-        <div key={index} class={'project'}>
+        <div class={'project'}>
           <p>{projectName}</p>
           <p>{description}</p>
         </div>
@@ -39,8 +39,8 @@ class PersonalProjects extends Nullstack {
         {this.personalProjects.length ? (
           <div>
             <h2>Personal Projects</h2>
-            {this.personalProjects.map((project, index) => (
-              <>{this.renderProject(project, index)}</>
+            {this.personalProjects.map((project) => (
+              <>{this.renderProject(project)}</>
             ))}
           </div>
         ) : null}

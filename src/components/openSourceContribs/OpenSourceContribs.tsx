@@ -36,8 +36,8 @@ class OpenSourceContribs extends Nullstack {
                 <h4>
                   <a href={link}>{title}</a>
                 </h4>
-                {description?.split('\n').map((line, lineIndex) => (
-                  <p key={lineIndex}>{line}</p>
+                {description?.split('\n').map((line) => (
+                  <p>{line}</p>
                 ))}
               </div>
             ))}

@@ -2,12 +2,21 @@
   display: flex;
 }
 
-.experience img {
-  height: 5%;
-  width: 5%;
+.experience .lateral {
+  max-width: 50px;
+  margin-right: 20px;
 }
 
-.experience .content {
+.experience .lateral img {
+  height: 50px;
+  width: 50px;
+}
+
+.companyInformation {
+  margin-bottom: 20px !important;
+}
+
+.experience .content, .companyInformation {
   margin: 0 auto 0 10px;
 }
 
