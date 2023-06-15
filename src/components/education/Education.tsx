@@ -40,7 +40,7 @@ class Education extends Nullstack {
     })
   }
 
-  async hydrate() {
+  async initiate() {
     await this.fetchEducation()
   }
 

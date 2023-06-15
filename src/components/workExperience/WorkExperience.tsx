@@ -18,7 +18,7 @@ class WorkExperiences extends Nullstack {
     this.workExperiences = await WorkExperiences.fetchWorkExperiencesFromDB()
   }
 
-  async hydrate() {
+  async initiate() {
     await this.fetchWorkExperiences()
   }
 

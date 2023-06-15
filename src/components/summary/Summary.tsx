@@ -18,7 +18,7 @@ class Summary extends Nullstack {
     this.summary = await Summary.fetchSummaryFromDB()
   }
 
-  async hydrate() {
+  async initiate() {
     await this.fetchSummary()
   }
 

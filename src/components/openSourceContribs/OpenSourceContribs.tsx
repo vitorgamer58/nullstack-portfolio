@@ -21,7 +21,7 @@ class OpenSourceContribs extends Nullstack {
     this.openSourceContribs = await OpenSourceContribs.fetchOpenSourceContribsFromDB()
   }
 
-  async hydrate() {
+  async initiate() {
     await this.fetchWorkExperiences()
   }
 

@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "npx nullstack start",
-    "build": "npx nullstack build --mode=spa --output=web"
+    "build": "npx nullstack build"
   },
   "dependencies": {
     "date-fns": "^2.30.0",
