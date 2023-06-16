@@ -55,7 +55,3 @@ Você pode encontrar a definição completa dessas classes no arquivo de tipagem
 ## Aprenda mais sobre Nullstack
 
 Para saber mais sobre como este projeto foi construído e como você pode aproveitar o Nullstack em seus próprios projetos, consulte a [documentação oficial do Nullstack](https://nullstack.app/documentation).
-
----
-
-Espero que este README melhorado torne o seu projeto mais compreensível e fácil de usar. Não se esqueça de preencher as variáveis de ambiente antes de executar o projeto!
