@@ -1,57 +1,57 @@
 # Nullstack Portfolio
 
-Este projeto de portfólio pessoal foi criado usando [Nullstack](https://nullstack.app/) e [TypeScript](https://www.typescriptlang.org/), com dados armazenados em uma base de dados MongoDB.
+This personal portfolio project was created using [Nullstack](https://nullstack.app/) and [TypeScript](https://www.typescriptlang.org/), with data stored in a MongoDB database.
 
-## Recursos
+## Features
 
-- Informações pessoais e introdução
-- Experiências profissionais detalhadas, incluindo empresas e cargos
-- Projetos pessoais com links para demonstração e código-fonte
-- Contribuições em projetos de código aberto
-- Histórico de educação e qualificações
+- Personal information and introduction
+- Detailed work experiences, including companies and roles
+- Personal projects with links to demonstration and source code
+- Contributions to open source projects
+- Education history and qualifications
 
-## Como executar este projeto
+## How to run this project
 
-### Instalar as dependências
+### Install the dependencies
 
 ```bash
 npm install
 ```
 
-### Configurar as variáveis de ambiente
+### Configure the environment variables
 
-Copie o exemplo de arquivo de ambiente para um arquivo .env e preencha as variáveis correspondentes.
+Copy the environment file example to a .env file and fill in the corresponding variables.
 
 ```sh
 NULLSTACK_PROJECT_NAME="[dev] Nullstack Portfolio"
 NULLSTACK_PROJECT_DOMAIN="localhost"
 NULLSTACK_PROJECT_COLOR="#D22365"
 NULLSTACK_SERVER_PORT="3000"
-NULLSTACK_SECRETS_DATABASE_NAME="" # Nome do seu banco de dados no MongoDB
-NULLSTACK_SECRETS_MONGODB_URI="" # URI de conexão ao seu MongoDB
+NULLSTACK_SECRETS_DATABASE_NAME="" # Your MongoDB database name
+NULLSTACK_SECRETS_MONGODB_URI="" # Connection URI to your MongoDB
 ```
 
-### Executar a aplicação
+### Run the application
 
 ```bash
 npm start
 ```
 
-Abra [http://localhost:3000](http://localhost:3000) para visualizar a aplicação em seu navegador.
+Open [http://localhost:3000](http://localhost:3000) to view the application in your browser.
 
-## Estrutura de Dados
+## Data Structure
 
-O projeto inclui várias classes de modelo TypeScript para estruturar os dados. Cada classe representa uma coleção diferente no MongoDB. Aqui estão as classes de modelo:
+The project includes various TypeScript model classes to structure the data. Each class represents a different collection in MongoDB. Here are the model classes:
 
-- `SummaryModel`: Informações pessoais e introdução
-- `roleModel`: Cargos dentro de uma empresa (uma pessoa pode ter ocupado vários cargos em uma única empresa)
-- `WorkExperiencesModel`: Representa uma empresa, que contém um array de roles (cargos).
-- `PersonalProjectModel`: Projetos pessoais
-- `OpenSourceContribsModel`: Contribuições em projetos de código aberto
-- `EducationModel`: Histórico de educação e qualificações
+- `SummaryModel`: Personal information and introduction
+- `roleModel`: Roles within a company (a person may have held several roles in a single company)
+- `WorkExperiencesModel`: Represents a company, which contains an array of roles.
+- `PersonalProjectModel`: Personal projects
+- `OpenSourceContribsModel`: Contributions to open source projects
+- `EducationModel`: Education history and qualifications
 
-Você pode encontrar a definição completa dessas classes no arquivo de tipagem do banco de dados `databaseInterfaces.ts`.
+You can find the complete definition of these classes in the database typing file `databaseInterfaces.ts`.
 
-## Aprenda mais sobre Nullstack
+## Learn more about Nullstack
 
-Para saber mais sobre como este projeto foi construído e como você pode aproveitar o Nullstack em seus próprios projetos, consulte a [documentação oficial do Nullstack](https://nullstack.app/documentation).
+To learn more about how this project was built and how you can leverage Nullstack in your own projects, consult the [official Nullstack documentation](https://nullstack.app/documentation).
