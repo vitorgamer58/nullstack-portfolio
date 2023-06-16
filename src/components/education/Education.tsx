@@ -66,8 +66,12 @@ class Education extends Nullstack {
   render() {
     return (
       <>
-        <h2>Education</h2>
-        {this.educationList?.map((education) => this.renderEducation(education))}
+        {!!this.educationList?.length && (
+          <>
+            <h2>Education</h2>
+            {this.educationList.map((education) => this.renderEducation(education))}
+          </>
+        )}
       </>
     )
   }

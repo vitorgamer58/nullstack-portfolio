@@ -15,9 +15,7 @@ export class SummaryModel {
 
 export class roleModel {
 
-  constructor(public jobName: string, public description: string, public startDate: Date, public endDate?: Date) {
-    if (endDate === undefined) this.endDate = new Date()
-  }
+  constructor(public jobName: string, public description: string, public startDate: Date, public endDate?: Date) {}
 
 }
 
@@ -27,7 +25,7 @@ export class WorkExperiencesModel {
 
 }
 
-export class PersonalProject {
+export class PersonalProjectsModel {
 
   constructor(
     public projectName: string,

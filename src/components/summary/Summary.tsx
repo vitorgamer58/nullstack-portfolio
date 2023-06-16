@@ -45,7 +45,7 @@ class Summary extends Nullstack {
   }
 
   render() {
-    return <>{this.summary ? this.renderSummary(this.summary) : null}</>
+    return <>{!!this.summary && this.renderSummary(this.summary)}</>
   }
 
 }

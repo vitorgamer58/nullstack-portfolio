@@ -91,7 +91,7 @@ class WorkExperiences extends Nullstack {
         {roles?.map((role) => (
           <div class={'role'}>
             <p>{role.jobName}</p>
-            {rolesInThisCompany > 1 ? this.renderRoleStartAndEndDate(role) : null}
+            {rolesInThisCompany > 1 && this.renderRoleStartAndEndDate(role)}
             {role.description?.split('\n').map((line) => (
               <p>{line}</p>
             ))}
@@ -104,21 +104,25 @@ class WorkExperiences extends Nullstack {
   render() {
     return (
       <>
-        <h2>Profissional experience</h2>
-        {this.workExperiences?.map((experience) => (
-          <div class={'experience'}>
-            <div class={'lateral'}>
-              <img src={experience.logo} alt="Company logo" />
-            </div>
-            <div>
-              <div class={'companyInformation'}>
-                <p>{experience?.companyName}</p>
-                {this.renderCompanyWorkTime(experience)}
+        {!!this.workExperiences?.length && (
+          <>
+            <h2>Profissional experience</h2>
+            {this.workExperiences.map((experience) => (
+              <div class={'experience'}>
+                <div class={'lateral'}>
+                  <img src={experience.logo} alt="Company logo" />
+                </div>
+                <div>
+                  <div class={'companyInformation'}>
+                    <p>{experience?.companyName}</p>
+                    {this.renderCompanyWorkTime(experience)}
+                  </div>
+                  <div class={'content'}>{this.renderRoles(experience)}</div>
+                </div>
               </div>
-              <div class={'content'}>{this.renderRoles(experience)}</div>
-            </div>
-          </div>
-        ))}
+            ))}
+          </>
+        )}
       </>
     )
   }

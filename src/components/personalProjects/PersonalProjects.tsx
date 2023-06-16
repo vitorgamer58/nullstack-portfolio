@@ -2,7 +2,7 @@ import Nullstack from 'nullstack'
 
 import { IPersonalProject } from '../../interfaces/databaseInterfaces'
 import { MyServerContext } from '../../interfaces/myServerContext'
-import { PersonalProject } from '../../models/databaseModels'
+import { PersonalProjectsModel } from '../../models/databaseModels'
 import './PersonalProjects.css'
 
 class PersonalProjects extends Nullstack {
@@ -11,7 +11,7 @@ class PersonalProjects extends Nullstack {
 
   static async fetchPersonalProjectsFromDB(context?: MyServerContext) {
     const { database } = context
-    return (await database.collection('personal_projects').find({}).toArray()) as unknown as PersonalProject[]
+    return (await database.collection('personal_projects').find({}).toArray()) as unknown as PersonalProjectsModel[]
   }
 
   async fetchPersonalProjects() {
@@ -36,14 +36,14 @@ class PersonalProjects extends Nullstack {
   render() {
     return (
       <>
-        {this.personalProjects.length ? (
+        {!!this.personalProjects?.length && (
           <div>
             <h2>Personal Projects</h2>
             {this.personalProjects.map((project) => (
               <>{this.renderProject(project)}</>
             ))}
           </div>
-        ) : null}
+        )}
       </>
     )
   }

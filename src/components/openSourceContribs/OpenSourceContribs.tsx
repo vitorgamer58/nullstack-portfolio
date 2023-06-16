@@ -28,7 +28,7 @@ class OpenSourceContribs extends Nullstack {
   render() {
     return (
       <>
-        {this.openSourceContribs?.length > 0 ? (
+        {!!this.openSourceContribs?.length && (
           <>
             <h2>Open source contribs and accepted pull requests</h2>
             {this.openSourceContribs.map(({ title, description, link }, index) => (
@@ -42,7 +42,7 @@ class OpenSourceContribs extends Nullstack {
               </div>
             ))}
           </>
-        ) : null}
+        )}
       </>
     )
   }
